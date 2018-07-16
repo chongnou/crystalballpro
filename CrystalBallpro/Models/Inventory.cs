@@ -5,17 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+
 namespace CrystalBallpro.Models
 {
-    public class Admin
+    public class Inventory
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-
-        //[ForeignKey("ApplicationUser")]
-        //public string ApplicationUserID { get; set; }
-        //public ApplicationUser ApplicationUser { get; set; }
+        public int Stock { get; set; }
+        public DateTime experation { get; set; }
+        public DateTime LastOrderd { get; set; }
     }
 }
