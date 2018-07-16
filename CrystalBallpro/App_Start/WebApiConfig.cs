@@ -10,6 +10,7 @@ namespace CrystalBallpro.App_Start
     public class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
+
         {
             config.MapHttpAttributeRoutes();
 
@@ -18,6 +19,11 @@ namespace CrystalBallpro.App_Start
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+        }
+
+        internal static void Register(System.Web.Http.HttpConfiguration configuration)
+        {
+            throw new NotImplementedException();
         }
     }
 }
