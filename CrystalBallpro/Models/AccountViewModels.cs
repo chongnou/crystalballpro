@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CrystalBallpro.Models
@@ -79,6 +80,10 @@ namespace CrystalBallpro.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string Role { get; set; }
+
+        public IEnumerable<IdentityRole> AspNetRoles { get; set; }
     }
 
     public class ResetPasswordViewModel
