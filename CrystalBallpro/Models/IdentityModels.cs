@@ -31,5 +31,12 @@ namespace CrystalBallpro.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Week> Weeks { get; set; }
+
     }
 }
