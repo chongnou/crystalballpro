@@ -31,5 +31,11 @@ namespace CrystalBallpro.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CrystalBallpro.Models.Admin> Admins { get; set; }
+
+        public System.Data.Entity.DbSet<CrystalBallpro.Models.Employee> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<CrystalBallpro.Models.Inventory> Inventories { get; set; }
     }
 }
