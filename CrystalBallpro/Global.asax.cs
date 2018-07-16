@@ -20,6 +20,7 @@ namespace CrystalBallpro
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            GlobalConfiguration.Configuration.EnsureInitialized();
         }
     }
 }
