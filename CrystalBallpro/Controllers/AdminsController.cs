@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CrystalBallpro.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CrystalBallpro.Controllers
 {
@@ -23,11 +24,12 @@ namespace CrystalBallpro.Controllers
         // GET: Admins/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var currentUserId = User.Identity.GetUserId();
+            if (currentUserId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Admin admin = db.Admins.Find(id);
+            Admin admin = db.Admins.Where(a => a.ApplicationUserID == currentUserId).FirstOrDefault();
             if (admin == null)
             {
                 return HttpNotFound();
@@ -46,13 +48,15 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Email")] Admin admin)
+        public ActionResult Create([Bind(Include = "ID,Name,Email,ApplicationUserId")] Admin admin)
         {
+            var currentUserId = User.Identity.GetUserId();
+            admin.ApplicationUserID = currentUserId;
             if (ModelState.IsValid)
             {
                 db.Admins.Add(admin);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(admin);
@@ -78,13 +82,13 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Email")] Admin admin)
+        public ActionResult Edit([Bind(Include = "ID,Name,Email,ApplicationUserID")] Admin admin)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(admin).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             return View(admin);
         }

@@ -177,7 +177,7 @@ namespace CrystalBallpro.Controllers
                         if (result.Succeeded)
                         {
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Create", "Admins");
                         }
                         else
                         {
@@ -191,7 +191,7 @@ namespace CrystalBallpro.Controllers
                         if (result.Succeeded)
                         {
                             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Create", "Employees");
                         }
                         else
                         {

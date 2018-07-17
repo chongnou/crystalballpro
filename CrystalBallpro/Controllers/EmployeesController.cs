@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CrystalBallpro.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CrystalBallpro.Controllers
 {
@@ -23,11 +24,13 @@ namespace CrystalBallpro.Controllers
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var currentUserId = User.Identity.GetUserId();
+
+            if (currentUserId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
             if (employee == null)
             {
                 return HttpNotFound();
@@ -46,13 +49,16 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Email")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Email,ApplicationUserId")] Employee employee)
         {
+            var currentUserId = User.Identity.GetUserId();
+            employee.ApplicationUserID = currentUserId;
+
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(employee);
@@ -78,13 +84,13 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,ApplicationUserId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             return View(employee);
         }
@@ -122,6 +128,11 @@ namespace CrystalBallpro.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AvailabilityIndex()
+        {
+            return View(db.Availabilities.ToList());
         }
     }
 }

@@ -14,8 +14,8 @@ namespace CrystalBallpro.Models
         public string Name { get; set; }
         public string Email { get; set; }
 
-        //[ForeignKey("ApplicationUser")]
-        //public string ApplicationUserID { get; set; }
-        //public ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationUserID { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -32,10 +32,12 @@ namespace CrystalBallpro.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<CrystalBallpro.Models.Admin> Admins { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Week> Weeks { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
-        public System.Data.Entity.DbSet<CrystalBallpro.Models.Employee> Employees { get; set; }
-
-        public System.Data.Entity.DbSet<CrystalBallpro.Models.Inventory> Inventories { get; set; }
     }
 }
