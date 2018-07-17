@@ -175,26 +175,51 @@ namespace CrystalBallpro.Controllers
             return View(availability);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult AvailabilityCreate(string currentUserId)
-        //{
+        public ActionResult AvailabilityEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+           
+            if (availability == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    Employee employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
 
-        //    if (currentUserId == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+            return View(availability);
+        }
 
-        //    var employeeAvailability = db.Availabilities.Include(a => a.Employee).Where(e => e.Employee.ApplicationUserID == currentUserId).ToList();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityEdit([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID")] Availability availability)
+        {
+            
+            var employee = db.Employees.Where(e => e.Id == availability.EmployeeID).FirstOrDefault();
+            var day = db.Weeks.Where(d => d.ID == availability.DayID).FirstOrDefault();
+            var startTime = db.StartTimes.Where(s => s.ID == availability.StartTimeID).FirstOrDefault();
+            var endTime = db.EndTimes.Where(t => t.ID == availability.EndTimeID).FirstOrDefault();
 
-        //    if (employeeAvailability == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View("AvailabilityIndex", employeeAvailability);
 
-        //}
+            if (ModelState.IsValid)
+            {
+                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).FirstOrDefault();
+                availability.EmployeeID = employee.Id;
+                availability.DayID = day.ID;
+                availability.StartTimeID = startTime.ID;
+                availability.EndTimeID = endTime.ID;
+                db.SaveChanges();
+                return RedirectToAction("AvailabilityIndex", "Employees");
+            }
+            
+            return View(availability);
+        }
+
+        
     }
 }
