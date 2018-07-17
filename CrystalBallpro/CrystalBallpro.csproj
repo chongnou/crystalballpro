@@ -222,6 +222,7 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
