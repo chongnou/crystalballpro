@@ -37,6 +37,7 @@ namespace CrystalBallpro.Models
         public DbSet<Availability> Availabilities { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Week> Weeks { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
     }
 }
