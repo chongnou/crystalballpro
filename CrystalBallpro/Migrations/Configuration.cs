@@ -36,6 +36,18 @@ namespace CrystalBallpro.Migrations
                     new Models.Week { Day = "Saturday" },
                     new Models.Week { Day = "Sunday" }
                 );
+
+            context.StartTimes.AddOrUpdate(
+                s => s.Start,
+                    new Models.StartTime { Start = "9:00 AM" },
+                    new Models.StartTime { Start = "3:30 PM" }
+                );
+
+            context.EndTimes.AddOrUpdate(
+                e => e.End,
+                    new Models.EndTime { End = "3:30 PM" },
+                    new Models.EndTime { End = "10:00 PM" }
+                );
         }
     }
 }

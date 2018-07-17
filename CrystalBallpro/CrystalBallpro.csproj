@@ -61,6 +61,9 @@
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.6\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
@@ -214,28 +217,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807162056305_initial.cs" />
-    <Compile Include="Migrations\201807162056305_initial.Designer.cs">
-      <DependentUpon>201807162056305_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201807171615517_initial.cs" />
+    <Compile Include="Migrations\201807171615517_initial.Designer.cs">
+      <DependentUpon>201807171615517_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807162210079_adding tables.cs" />
-    <Compile Include="Migrations\201807162210079_adding tables.Designer.cs">
-      <DependentUpon>201807162210079_adding tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807162232337_InventoryTableAdded.cs" />
-    <Compile Include="Migrations\201807162232337_InventoryTableAdded.Designer.cs">
-      <DependentUpon>201807162232337_InventoryTableAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201807171646307_madeIDnullable.cs" />
+    <Compile Include="Migrations\201807171646307_madeIDnullable.Designer.cs">
+      <DependentUpon>201807171646307_madeIDnullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EndTime.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\StartTime.cs" />
     <Compile Include="Models\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -318,9 +319,10 @@
     <Content Include="Views\Inventories\Details.cshtml" />
     <Content Include="Views\Inventories\Edit.cshtml" />
     <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\Employees\AvailabilityDetails.cshtml" />
     <Content Include="Views\Employees\AvailabilityCreate.cshtml" />
-    <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
     <Content Include="Views\Employees\AvailabilityEdit.cshtml" />
+    <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,14 +341,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807162056305_initial.resx">
-      <DependentUpon>201807162056305_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807171615517_initial.resx">
+      <DependentUpon>201807171615517_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807162210079_adding tables.resx">
-      <DependentUpon>201807162210079_adding tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807162232337_InventoryTableAdded.resx">
-      <DependentUpon>201807162232337_InventoryTableAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807171646307_madeIDnullable.resx">
+      <DependentUpon>201807171646307_madeIDnullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -132,7 +132,69 @@ namespace CrystalBallpro.Controllers
 
         public ActionResult AvailabilityIndex()
         {
-            return View(db.Availabilities.ToList());
+            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).ToList();
+            return View(availabilities);
         }
+
+        [HttpGet]
+        public ActionResult AvailabilityCreate()
+        {
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day");
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start");
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End");
+            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityCreate([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID")] Availability availability)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
+            var day = db.Weeks.Where(d => d.ID == availability.DayID).FirstOrDefault();
+            var startTime = db.StartTimes.Where(s => s.ID == availability.StartTimeID).FirstOrDefault();
+            var endTime = db.EndTimes.Where(t => t.ID == availability.EndTimeID).FirstOrDefault();
+            
+
+            if (ModelState.IsValid)
+            {
+                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).FirstOrDefault();
+                availability.EmployeeID = employee.Id;
+                availability.DayID = day.ID;
+                availability.StartTimeID = startTime.ID;
+                availability.EndTimeID = endTime.ID;
+                db.Availabilities.Add(availability);
+                db.SaveChanges();
+                return RedirectToAction("AvailabilityIndex", "Employees");
+            }
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AvailabilityCreate(string currentUserId)
+        //{
+
+        //    Employee employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
+
+        //    if (currentUserId == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    var employeeAvailability = db.Availabilities.Include(a => a.Employee).Where(e => e.Employee.ApplicationUserID == currentUserId).ToList();
+
+        //    if (employeeAvailability == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View("AvailabilityIndex", employeeAvailability);
+
+        //}
     }
 }

@@ -1,0 +1,58 @@
+﻿@model CrystalBallpro.Models.Availability
+
+@{
+    ViewBag.Title = "AvailabilityDetails";
+}
+
+<h2>AvailabilityDetails</h2>
+
+<div>
+    <h4>Availability</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Admin.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime.End)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime.End)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime.Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime.Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Week.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Week.Day)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

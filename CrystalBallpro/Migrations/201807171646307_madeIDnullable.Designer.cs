@@ -7,13 +7,13 @@ namespace CrystalBallpro.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InventoryTableAdded : IMigrationMetadata
+    public sealed partial class madeIDnullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InventoryTableAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(madeIDnullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807162232337_InventoryTableAdded"; }
+            get { return "201807171646307_madeIDnullable"; }
         }
         
         string IMigrationMetadata.Source
