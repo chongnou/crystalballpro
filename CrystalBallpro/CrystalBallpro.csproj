@@ -218,6 +218,14 @@
     <Compile Include="Migrations\201807162056305_initial.Designer.cs">
       <DependentUpon>201807162056305_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807162210079_adding tables.cs" />
+    <Compile Include="Migrations\201807162210079_adding tables.Designer.cs">
+      <DependentUpon>201807162210079_adding tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807162232337_InventoryTableAdded.cs" />
+    <Compile Include="Migrations\201807162232337_InventoryTableAdded.Designer.cs">
+      <DependentUpon>201807162232337_InventoryTableAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -309,6 +317,9 @@
     <Content Include="Views\Inventories\Details.cshtml" />
     <Content Include="Views\Inventories\Edit.cshtml" />
     <Content Include="Views\Inventories\Index.cshtml" />
+    <Content Include="Views\Employees\AvailabilityCreate.cshtml" />
+    <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
+    <Content Include="Views\Employees\AvailabilityEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +340,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807162056305_initial.resx">
       <DependentUpon>201807162056305_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807162210079_adding tables.resx">
+      <DependentUpon>201807162210079_adding tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807162232337_InventoryTableAdded.resx">
+      <DependentUpon>201807162232337_InventoryTableAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

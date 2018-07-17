@@ -26,6 +26,16 @@ namespace CrystalBallpro.Migrations
                     new IdentityRole { Name = "Employee" }
                 );
 
+            context.Weeks.AddOrUpdate(
+                w => w.Day,
+                    new Models.Week { Day = "Monday" },
+                    new Models.Week { Day = "Tuesday" },
+                    new Models.Week { Day = "Wednesday" },
+                    new Models.Week { Day = "Thursday" },
+                    new Models.Week { Day = "Friday" },
+                    new Models.Week { Day = "Saturday" },
+                    new Models.Week { Day = "Sunday" }
+                );
         }
     }
 }
