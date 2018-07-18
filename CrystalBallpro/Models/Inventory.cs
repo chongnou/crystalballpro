@@ -14,7 +14,8 @@ namespace CrystalBallpro.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int Stock { get; set; }
-        public DateTime experation { get; set; }
-        public DateTime LastOrderd { get; set; }
+        public string Units { get; set; }
+        public string Expiration { get; set; }
+        public string LastOrdered { get; set; }
     }
 }
