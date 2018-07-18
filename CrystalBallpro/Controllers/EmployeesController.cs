@@ -250,6 +250,12 @@ namespace CrystalBallpro.Controllers
             return RedirectToAction("AvailabilityIndex", "Employees");
         }
 
-        
+        public ActionResult SceduleEIndex()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
+            var schedule = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).OrderBy(a => a.DayID).Where(a => a.EmployeeID == employee.Id && a.WorkStatus == true).ToList();
+            return View(schedule);
+        }
     }
 }

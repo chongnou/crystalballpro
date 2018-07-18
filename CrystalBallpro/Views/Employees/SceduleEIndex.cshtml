@@ -1,19 +1,19 @@
 ﻿@model IEnumerable<CrystalBallpro.Models.Availability>
 
 @{
-    ViewBag.Title = "ScheduleIndex";
+    ViewBag.Title = "SceduleEIndex";
 }
 
-<h2>Staff Availability</h2>
+<h2>Schedule</h2>
 
-<p>
-    @Html.ActionLink("Create New Schedule", "ScheduleCreate", "Admins")
-</p>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Admin.Name)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Employee.Name)
         </th>
@@ -26,17 +26,17 @@
         <th>
             @Html.DisplayNameFor(model => model.EndTime.End)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.WorkStatus)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Admin.Name)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Employee.Name)
         </td>
@@ -49,14 +49,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.EndTime.End)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.WorkStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "ScheduleEdit", new { id = item.ID }) |
-            
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
-        </td>
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>*@
     </tr>
 }
 

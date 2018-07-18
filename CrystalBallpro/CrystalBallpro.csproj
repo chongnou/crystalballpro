@@ -326,6 +326,7 @@
     <Content Include="Views\Admins\ScheduleIndex.cshtml" />
     <Content Include="Views\Admins\ScheduleEdit.cshtml" />
     <Content Include="Views\Admins\ScheduleCreate.cshtml" />
+    <Content Include="Views\Employees\SceduleEIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
