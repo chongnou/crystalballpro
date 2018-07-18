@@ -48,6 +48,15 @@ namespace CrystalBallpro.Migrations
                     new Models.EndTime { End = "3:30 PM" },
                     new Models.EndTime { End = "10:00 PM" }
                 );
+
+            context.SalesHistoricals.AddOrUpdate(
+            d => d.Id,
+                    new Models.SalesHistorical { NumberOfEvents = 0, NumberOfEmployees = 2, SalesIncreasePercent = 0 },
+                    new Models.SalesHistorical { NumberOfEvents = 1, NumberOfEmployees = 3, SalesIncreasePercent = 8 },
+                    new Models.SalesHistorical { NumberOfEvents = 2, NumberOfEmployees = 3, SalesIncreasePercent = 10 },
+                    new Models.SalesHistorical { NumberOfEvents = 3, NumberOfEmployees = 4, SalesIncreasePercent = 15 },
+                    new Models.SalesHistorical { NumberOfEvents = 4, NumberOfEmployees = 4, SalesIncreasePercent = 20 },
+                    new Models.SalesHistorical { NumberOfEvents = 5, NumberOfEmployees = 5, SalesIncreasePercent = 30 });
         }
     }
 }
