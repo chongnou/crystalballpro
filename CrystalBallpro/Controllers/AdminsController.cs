@@ -286,6 +286,10 @@ namespace CrystalBallpro.Controllers
             return View(availability);
         }
 
-        
+        public ActionResult ScheduleCreate()
+        {
+            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).OrderBy(a => a.DayID).Where(a => a.WorkStatus == true).ToList();
+            return View(availabilities);
+        }
     }
 }
