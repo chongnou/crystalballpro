@@ -1,13 +1,13 @@
 ﻿@model CrystalBallpro.Models.Availability
 
 @{
-    ViewBag.Title = "AvailabilityEdit";
+    ViewBag.Title = "AvailabilityCreate";
 }
 
-<h2>Edit Availability</h2>
+<h2>Add Day</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -15,7 +15,6 @@
         <br />
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.AdminID)
         @Html.HiddenFor(model => model.EmployeeID)
         @Html.HiddenFor(model => model.WorkStatus)
@@ -60,16 +59,26 @@
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.WorkStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.WorkStatus)
+                    @Html.ValidationMessageFor(model => model.WorkStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "AvailabilityIndex", "Employees")
+    @Html.ActionLink("Back to List", "AvailabilityAIndex", "Admins")
 </div>
 
 @section Scripts {

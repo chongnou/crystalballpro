@@ -43,6 +43,7 @@ namespace CrystalBallpro.Models
 
         public IEnumerable<EndTime> EndTimes { get; set; }
 
+        public bool WorkStatus { get; set; }
 
     }
 }

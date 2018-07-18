@@ -127,5 +127,124 @@ namespace CrystalBallpro.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult AvailabilityAIndex()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var admin = db.Admins.Where(a => a.ApplicationUserID == currentUserId).FirstOrDefault();
+            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.AdminID == admin.ID).ToList();
+            return View(availabilities);
+        }
+
+        [HttpGet]
+        public ActionResult AvailabilityACreate()
+        {
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day");
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start");
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End");
+
+            return View();
+        }
+
+        [HttpPost, ActionName("AvailabilityACreate")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityACreate([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID,WorkStatus")] Availability availability)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var admin = db.Admins.Where(a => a.ApplicationUserID == currentUserId).FirstOrDefault();
+            var day = db.Weeks.Where(d => d.ID == availability.DayID).FirstOrDefault();
+            var startTime = db.StartTimes.Where(s => s.ID == availability.StartTimeID).FirstOrDefault();
+            var endTime = db.EndTimes.Where(t => t.ID == availability.EndTimeID).FirstOrDefault();
+
+
+            if (ModelState.IsValid || availability.ID == 0)
+            {
+                availability.AdminID = admin.ID;
+                availability.EmployeeID = null;
+                availability.DayID = day.ID;
+                availability.StartTimeID = startTime.ID;
+                availability.EndTimeID = endTime.ID;
+                db.Availabilities.Add(availability);
+                db.SaveChanges();
+                return RedirectToAction("AvailabilityAIndex", "Admins");
+            }
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        public ActionResult AvailabilityAEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+
+            if (availability == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityAEdit([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID,WorkStatus")] Availability availability)
+        {
+            var admin = db.Admins.Where(a => a.ID == availability.AdminID).FirstOrDefault();
+            var day = db.Weeks.Where(d => d.ID == availability.DayID).FirstOrDefault();
+            var startTime = db.StartTimes.Where(s => s.ID == availability.StartTimeID).FirstOrDefault();
+            var endTime = db.EndTimes.Where(t => t.ID == availability.EndTimeID).FirstOrDefault();
+
+
+            if (ModelState.IsValid)
+            {
+                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == availability.ID).FirstOrDefault();
+                availability.AdminID = admin.ID;
+                availability.DayID = day.ID;
+                availability.StartTimeID = startTime.ID;
+                availability.EndTimeID = endTime.ID;
+                db.SaveChanges();
+                return RedirectToAction("AvailabilityAIndex", "Admins");
+            }
+
+            return View(availability);
+        }
+
+        public ActionResult AvailabilityADelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+            if (availability == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        [HttpPost, ActionName("AvailabilityADelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityADeleteConfirmed(int id)
+        {
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+            db.Availabilities.Remove(availability);
+            db.SaveChanges();
+            return RedirectToAction("AvailabilityAIndex", "Admins");
+        }
     }
 }

@@ -50,6 +50,14 @@
         <dd>
             @Html.DisplayFor(model => model.EndTime.End)
         </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.WorkStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkStatus)
+        </dd>*@
+
     </dl>
 
     @using (Html.BeginForm()) {
@@ -57,7 +65,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "AvailabilityIndex", "Employees")
+            @Html.ActionLink("Back to List", "AvailabilityAIndex", "Admins")
         </div>
     }
 </div>

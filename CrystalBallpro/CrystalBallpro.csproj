@@ -217,13 +217,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807171615517_initial.cs" />
-    <Compile Include="Migrations\201807171615517_initial.Designer.cs">
-      <DependentUpon>201807171615517_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807171646307_madeIDnullable.cs" />
-    <Compile Include="Migrations\201807171646307_madeIDnullable.Designer.cs">
-      <DependentUpon>201807171646307_madeIDnullable.cs</DependentUpon>
+    <Compile Include="Migrations\201807180300401_initial.cs" />
+    <Compile Include="Migrations\201807180300401_initial.Designer.cs">
+      <DependentUpon>201807180300401_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -323,6 +319,10 @@
     <Content Include="Views\Employees\AvailabilityEdit.cshtml" />
     <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
     <Content Include="Views\Employees\AvailabilityDelete.cshtml" />
+    <Content Include="Views\Admins\AvailabilityACreate.cshtml" />
+    <Content Include="Views\Admins\AvailabilityADelete.cshtml" />
+    <Content Include="Views\Admins\AvailabilityAEdit.cshtml" />
+    <Content Include="Views\Admins\AvailabilityAIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,11 +341,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807171615517_initial.resx">
-      <DependentUpon>201807171615517_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807171646307_madeIDnullable.resx">
-      <DependentUpon>201807171646307_madeIDnullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807180300401_initial.resx">
+      <DependentUpon>201807180300401_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
