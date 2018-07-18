@@ -13,7 +13,7 @@ namespace CrystalBallpro.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201807180300401_initial"; }
+            get { return "201807182303386_initial"; }
         }
         
         string IMigrationMetadata.Source

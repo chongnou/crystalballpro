@@ -166,6 +166,17 @@ namespace CrystalBallpro.Migrations
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
+                "dbo.SalesHistoricals",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        NumberOfEvents = c.Int(nullable: false),
+                        NumberOfEmployees = c.Int(nullable: false),
+                        SalesIncreasePercent = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Schedules",
                 c => new
                     {
@@ -202,6 +213,7 @@ namespace CrystalBallpro.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Admins", new[] { "ApplicationUserID" });
             DropTable("dbo.Schedules");
+            DropTable("dbo.SalesHistoricals");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Inventories");
             DropTable("dbo.Weeks");
