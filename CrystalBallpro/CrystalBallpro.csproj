@@ -211,6 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -318,6 +319,7 @@
     <Content Include="Views\Employees\AvailabilityCreate.cshtml" />
     <Content Include="Views\Employees\AvailabilityEdit.cshtml" />
     <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
+    <Content Include="Views\Events\View.cshtml" />
     <Content Include="Views\Employees\AvailabilityDelete.cshtml" />
     <Content Include="Views\Admins\AvailabilityACreate.cshtml" />
     <Content Include="Views\Admins\AvailabilityADelete.cshtml" />
