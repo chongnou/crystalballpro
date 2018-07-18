@@ -4,10 +4,10 @@
     ViewBag.Title = "ScheduleIndex";
 }
 
-<h2>Schedule</h2>
+<h2>Staff Availability</h2>
 
 <p>
-    @Html.ActionLink("Create New", "ScheduleCreate", "Admins")
+    @Html.ActionLink("Create New Schedule", "ScheduleCreate", "Admins")
 </p>
 <table class="table">
     <tr>
@@ -54,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "ScheduleEdit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            
             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>

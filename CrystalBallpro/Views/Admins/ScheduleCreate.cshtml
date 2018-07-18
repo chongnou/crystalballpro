@@ -6,9 +6,9 @@
 
 <h2>Schedule</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -52,12 +52,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.WorkStatus)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @*<td>
+            @Html.ActionLink("Edit", "ScheduleEdit", new { id = item.ID }) |
+            
             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
+        </td>*@
     </tr>
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("View Availability", "ScheduleIndex", "Admins")
+</div>
