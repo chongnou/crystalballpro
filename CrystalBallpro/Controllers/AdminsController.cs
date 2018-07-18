@@ -252,5 +252,40 @@ namespace CrystalBallpro.Controllers
             var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).OrderBy(a => a.DayID).ToList();
             return View(availabilities);
         }
+
+        public ActionResult ScheduleEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+
+            if (availability == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ScheduleEdit([Bind(Include = "ID,AdminId,EmployeeID,DayID,StartTimeID,EndTimeID,WorkStatus")] Availability availability)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(availability).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ScheduleIndex", "Admins");
+            }
+            return View(availability);
+        }
+
+        
     }
 }
