@@ -246,5 +246,11 @@ namespace CrystalBallpro.Controllers
             db.SaveChanges();
             return RedirectToAction("AvailabilityAIndex", "Admins");
         }
+
+        public ActionResult ScheduleIndex()
+        {
+            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).OrderBy(a => a.DayID).ToList();
+            return View(availabilities);
+        }
     }
 }

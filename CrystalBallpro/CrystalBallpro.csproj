@@ -323,6 +323,7 @@
     <Content Include="Views\Admins\AvailabilityADelete.cshtml" />
     <Content Include="Views\Admins\AvailabilityAEdit.cshtml" />
     <Content Include="Views\Admins\AvailabilityAIndex.cshtml" />
+    <Content Include="Views\Admins\ScheduleIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

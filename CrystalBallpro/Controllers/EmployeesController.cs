@@ -249,5 +249,7 @@ namespace CrystalBallpro.Controllers
             db.SaveChanges();
             return RedirectToAction("AvailabilityIndex", "Employees");
         }
+
+        
     }
 }
