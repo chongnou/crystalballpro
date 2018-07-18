@@ -211,7 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\SalesHistoricalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoriesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -222,13 +222,17 @@
     <Compile Include="Migrations\201807180300401_initial.Designer.cs">
       <DependentUpon>201807180300401_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807181908581_adding sales historical table.cs" />
+    <Compile Include="Migrations\201807181908581_adding sales historical table.Designer.cs">
+      <DependentUpon>201807181908581_adding sales historical table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EndTime.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\SalesHistorical.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -319,7 +323,7 @@
     <Content Include="Views\Employees\AvailabilityCreate.cshtml" />
     <Content Include="Views\Employees\AvailabilityEdit.cshtml" />
     <Content Include="Views\Employees\AvailabilityIndex.cshtml" />
-    <Content Include="Views\Events\View.cshtml" />
+    <Content Include="Views\SalesHistorical\Index.cshtml" />
     <Content Include="Views\Employees\AvailabilityDelete.cshtml" />
     <Content Include="Views\Admins\AvailabilityACreate.cshtml" />
     <Content Include="Views\Admins\AvailabilityADelete.cshtml" />
@@ -349,6 +353,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807180300401_initial.resx">
       <DependentUpon>201807180300401_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181908581_adding sales historical table.resx">
+      <DependentUpon>201807181908581_adding sales historical table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

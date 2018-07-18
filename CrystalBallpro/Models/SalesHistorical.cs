@@ -6,12 +6,12 @@ using System.Web;
 
 namespace CrystalBallpro.Models
 {
-    public class Event
+    public class SalesHistorical
     {
         [Key]
         public int Id { get; set; }
-        public string EventName { get; set; }
-        public string Location { get; set; }
-        public DateTime EventDate { get; set; }
+        public int NumberOfEvents { get; set; }
+        public int NumberOfEmployees { get; set; }
+        public double SalesIncreasePercent { get; set; }
     }
 }

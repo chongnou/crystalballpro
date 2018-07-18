@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace CrystalBallpro.Controllers
 {
-    public class EventsController : Controller
+    public class SalesHistoricalController : Controller
     {
         // GET: Events
         public ActionResult Index()
