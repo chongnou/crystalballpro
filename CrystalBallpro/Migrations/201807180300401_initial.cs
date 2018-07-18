@@ -84,15 +84,16 @@ namespace CrystalBallpro.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        AdminID = c.Int(nullable: false),
-                        EmployeeID = c.Int(nullable: false),
+                        AdminID = c.Int(),
+                        EmployeeID = c.Int(),
                         DayID = c.Int(nullable: false),
                         StartTimeID = c.Int(nullable: false),
                         EndTimeID = c.Int(nullable: false),
+                        WorkStatus = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Admins", t => t.AdminID, cascadeDelete: true)
-                .ForeignKey("dbo.Employees", t => t.EmployeeID, cascadeDelete: true)
+                .ForeignKey("dbo.Admins", t => t.AdminID)
+                .ForeignKey("dbo.Employees", t => t.EmployeeID)
                 .ForeignKey("dbo.EndTimes", t => t.EndTimeID, cascadeDelete: true)
                 .ForeignKey("dbo.StartTimes", t => t.StartTimeID, cascadeDelete: true)
                 .ForeignKey("dbo.Weeks", t => t.DayID, cascadeDelete: true)

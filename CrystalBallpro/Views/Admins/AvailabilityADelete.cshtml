@@ -1,0 +1,71 @@
+﻿@model CrystalBallpro.Models.Availability
+
+@{
+    ViewBag.Title = "AvailabilityDelete";
+}
+
+<h2>Delete Availability</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <br />
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Admin.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Admin.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Week.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Week.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime.Start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime.Start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime.End)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime.End)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.WorkStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkStatus)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "AvailabilityAIndex", "Admins")
+        </div>
+    }
+</div>

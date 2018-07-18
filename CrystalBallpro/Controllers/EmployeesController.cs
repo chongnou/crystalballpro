@@ -132,7 +132,9 @@ namespace CrystalBallpro.Controllers
 
         public ActionResult AvailabilityIndex()
         {
-            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).ToList();
+            var currentUserId = User.Identity.GetUserId();
+            var employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
+            var availabilities = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.EmployeeID == employee.Id).ToList();
             return View(availabilities);
         }
 
@@ -146,9 +148,9 @@ namespace CrystalBallpro.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("AvailabilityCreate")]
         [ValidateAntiForgeryToken]
-        public ActionResult AvailabilityCreate([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID")] Availability availability)
+        public ActionResult AvailabilityCreate([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID,WorkStatus")] Availability availability)
         {
             var currentUserId = User.Identity.GetUserId();
             var employee = db.Employees.Where(e => e.ApplicationUserID == currentUserId).FirstOrDefault();
@@ -157,9 +159,9 @@ namespace CrystalBallpro.Controllers
             var endTime = db.EndTimes.Where(t => t.ID == availability.EndTimeID).FirstOrDefault();
             
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid || availability.ID == 0)
             {
-                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).FirstOrDefault();
+                availability.AdminID = null;
                 availability.EmployeeID = employee.Id;
                 availability.DayID = day.ID;
                 availability.StartTimeID = startTime.ID;
@@ -197,7 +199,7 @@ namespace CrystalBallpro.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AvailabilityEdit([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID")] Availability availability)
+        public ActionResult AvailabilityEdit([Bind(Include = "ID,AdminID,EmployeeID,DayID,StartTimeID,EndTimeID,WorkStatus")] Availability availability)
         {
             
             var employee = db.Employees.Where(e => e.Id == availability.EmployeeID).FirstOrDefault();
@@ -208,7 +210,7 @@ namespace CrystalBallpro.Controllers
 
             if (ModelState.IsValid)
             {
-                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).FirstOrDefault();
+                availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == availability.ID).FirstOrDefault();
                 availability.EmployeeID = employee.Id;
                 availability.DayID = day.ID;
                 availability.StartTimeID = startTime.ID;
@@ -218,6 +220,34 @@ namespace CrystalBallpro.Controllers
             }
             
             return View(availability);
+        }
+
+        public ActionResult AvailabilityDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+            if (availability == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DayID = new SelectList(db.Weeks, "ID", "Day", availability.DayID);
+            ViewBag.StartTimeID = new SelectList(db.StartTimes, "ID", "Start", availability.StartTimeID);
+            ViewBag.EndTimeID = new SelectList(db.EndTimes, "ID", "End", availability.EndTimeID);
+
+            return View(availability);
+        }
+
+        [HttpPost, ActionName("AvailabilityDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AvailabilityDeleteConfirmed(int id)
+        {
+            Availability availability = db.Availabilities.Include(a => a.Admin).Include(a => a.Employee).Include(a => a.Week).Include(a => a.StartTime).Include(a => a.EndTime).Where(a => a.ID == id).FirstOrDefault();
+            db.Availabilities.Remove(availability);
+            db.SaveChanges();
+            return RedirectToAction("AvailabilityIndex", "Employees");
         }
 
         

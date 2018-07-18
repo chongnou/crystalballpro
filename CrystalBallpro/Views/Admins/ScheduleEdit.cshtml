@@ -1,10 +1,10 @@
 ﻿@model CrystalBallpro.Models.Availability
 
 @{
-    ViewBag.Title = "AvailabilityEdit";
+    ViewBag.Title = "ScheduleEdit";
 }
 
-<h2>Edit Availability</h2>
+<h2>Edit Status</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,9 @@
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.AdminID)
         @Html.HiddenFor(model => model.EmployeeID)
-        @Html.HiddenFor(model => model.WorkStatus)
+        @Html.HiddenFor(model => model.DayID)
+        @Html.HiddenFor(model => model.StartTimeID)
+        @Html.HiddenFor(model => model.EndTimeID)
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.AdminID, "AdminID", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,10 +36,10 @@
                 @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DayID, "Day", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DayID, "DayID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DayID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DayID, "", new { @class = "text-danger" })
@@ -45,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartTimeID, "Start Time", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StartTimeID, "StartTimeID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("StartTimeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.StartTimeID, "", new { @class = "text-danger" })
@@ -53,10 +55,20 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EndTimeID, "End Time", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EndTimeID, "EndTimeID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("EndTimeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EndTimeID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WorkStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.WorkStatus)
+                    @Html.ValidationMessageFor(model => model.WorkStatus, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -69,7 +81,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "AvailabilityIndex", "Employees")
+    @Html.ActionLink("Back to List", "ScheduleIndex", "Admins")
 </div>
 
 @section Scripts {

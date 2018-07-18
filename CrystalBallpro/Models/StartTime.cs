@@ -12,6 +12,7 @@ namespace CrystalBallpro.Models
         [Key]
         public int ID { get; set; }
 
+        [Display(Name = "Start Time")]
         public string Start { get; set; }
 
     }
