@@ -7,13 +7,13 @@ namespace CrystalBallpro.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class salesinfo : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(salesinfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807182110507_salesinfo"; }
+            get { return "201807191427339_initial"; }
         }
         
         string IMigrationMetadata.Source
