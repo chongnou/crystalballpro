@@ -60,6 +60,17 @@ namespace CrystalBallpro.Migrations
                     new Models.Inventory { Name = "Coleslaw", Stock = 15, Units = null, Expiration = "2018, 11, 8", LastOrdered = "2018, 15, 7" },
                     new Models.Inventory { Name = "Beer", Stock = 12, Units = "Cases", Expiration = "2019, 07, 6", LastOrdered = "2018, 15, 7" }
                     );
+
+            context.SalesHistoricals.AddOrUpdate(
+           d => d.Id,
+                   new Models.SalesHistorical { NumberOfEvents = 0, NumberOfEmployees = 2, SalesIncreasePercent = 0 },
+                   new Models.SalesHistorical { NumberOfEvents = 1, NumberOfEmployees = 3, SalesIncreasePercent = 8 },
+                   new Models.SalesHistorical { NumberOfEvents = 2, NumberOfEmployees = 3, SalesIncreasePercent = 10 },
+                   new Models.SalesHistorical { NumberOfEvents = 3, NumberOfEmployees = 4, SalesIncreasePercent = 15 },
+                   new Models.SalesHistorical { NumberOfEvents = 4, NumberOfEmployees = 4, SalesIncreasePercent = 20 },
+                   new Models.SalesHistorical { NumberOfEvents = 5, NumberOfEmployees = 5, SalesIncreasePercent = 30 }
+
+               );
         }
     }
 }
