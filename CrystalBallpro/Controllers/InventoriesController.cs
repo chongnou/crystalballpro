@@ -46,7 +46,7 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Stock,experation,LastOrderd")] Inventory inventory)
+        public ActionResult Create([Bind(Include = "Id,Name,Stock,Units,Expiration,LastOrdered")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace CrystalBallpro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Stock,experation,LastOrderd")] Inventory inventory)
+        public ActionResult Edit([Bind(Include = "Id,Name,Stock,Units,Expiration,LastOrdered")] Inventory inventory)
         {
             if (ModelState.IsValid)
             {

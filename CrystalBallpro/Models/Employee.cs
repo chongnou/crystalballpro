@@ -11,6 +11,7 @@ namespace CrystalBallpro.Models
     { 
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Employee Name")]
         public string Name { get; set; }
         public string Email { get; set; }
 

@@ -16,6 +16,7 @@ namespace CrystalBallpro.Models
         public int Stock { get; set; }
         public string Units { get; set; }
         public string Expiration { get; set; }
+        [Display(Name = "Last Ordered")]
         public string LastOrdered { get; set; }
     }
 }

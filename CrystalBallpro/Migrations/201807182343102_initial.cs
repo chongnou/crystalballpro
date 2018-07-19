@@ -150,8 +150,9 @@ namespace CrystalBallpro.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Stock = c.Int(nullable: false),
-                        experation = c.DateTime(nullable: false),
-                        LastOrderd = c.DateTime(nullable: false),
+                        Units = c.String(),
+                        Expiration = c.String(),
+                        LastOrdered = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
