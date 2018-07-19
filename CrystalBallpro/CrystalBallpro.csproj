@@ -218,9 +218,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807182343102_initial.cs" />
-    <Compile Include="Migrations\201807182343102_initial.Designer.cs">
-      <DependentUpon>201807182343102_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201807180300401_initial.cs" />
+    <Compile Include="Migrations\201807180300401_initial.Designer.cs">
+      <DependentUpon>201807180300401_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181908581_adding sales historical table.cs" />
+    <Compile Include="Migrations\201807181908581_adding sales historical table.Designer.cs">
+      <DependentUpon>201807181908581_adding sales historical table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182110507_salesinfo.cs" />
+    <Compile Include="Migrations\201807182110507_salesinfo.Designer.cs">
+      <DependentUpon>201807182110507_salesinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182120315_All the migrations.cs" />
+    <Compile Include="Migrations\201807182120315_All the migrations.Designer.cs">
+      <DependentUpon>201807182120315_All the migrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807182124149_Inventories Model Changed.cs" />
+    <Compile Include="Migrations\201807182124149_Inventories Model Changed.Designer.cs">
+      <DependentUpon>201807182124149_Inventories Model Changed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -347,8 +363,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807182343102_initial.resx">
-      <DependentUpon>201807182343102_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807180300401_initial.resx">
+      <DependentUpon>201807180300401_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181908581_adding sales historical table.resx">
+      <DependentUpon>201807181908581_adding sales historical table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182110507_salesinfo.resx">
+      <DependentUpon>201807182110507_salesinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182120315_All the migrations.resx">
+      <DependentUpon>201807182120315_All the migrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807182124149_Inventories Model Changed.resx">
+      <DependentUpon>201807182124149_Inventories Model Changed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
